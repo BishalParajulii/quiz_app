@@ -1,17 +1,22 @@
 import React from 'react';
-import { StyleSheet, Text, TouchableOpacity, View, Image } from 'react-native'; // ✅ Added Image
+import { StyleSheet, Text, TouchableOpacity, View, Image, StatusBar } from 'react-native';
 import Title from '../components/title';
 
-const Home = () => {
+const Home = ({ navigation }) => {
     return (
-        <View>
+        <View style={styles.container}>
+            <StatusBar barStyle="light-content" backgroundColor="#023047" />
             <Title />
             <View style={styles.bannerContainer}>
                 <Image source={require('../assets/quiz.jpg')} style={styles.banner} resizeMode='contain' />
             </View>
 
-            <TouchableOpacity>
-                <Text>Start</Text>
+            <TouchableOpacity
+                onPress={() => navigation.navigate("Quiz")}
+                style={styles.button}
+                activeOpacity={0.8}
+            >
+                <Text style={styles.buttonText}>Start Quiz</Text>
             </TouchableOpacity>
         </View>
     );
@@ -20,13 +25,42 @@ const Home = () => {
 export default Home;
 
 const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#9ACBD0', // Dark elegant background
+        alignItems: 'center',
+        justifyContent: 'space-evenly',
+        paddingHorizontal: 20,
+        height : '100%'
+    },
     banner: {
-        height: 300,
-        width: 300,
+        height: 700,
+        width: 350,
+        borderRadius: 20,
     },
     bannerContainer: {
-        alignItems: 'center',
+        flex: 0.6,
         justifyContent: 'center',
-        marginTop: 20,
+        alignItems: 'center',
+    },
+    button: {
+        backgroundColor: '#219EBC',
+        paddingVertical: 16,
+        paddingHorizontal: 32,
+        borderRadius: 30,
+        elevation: 5, // Android shadow
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 3 },
+        shadowOpacity: 0.3,
+        shadowRadius: 4,
+        width: '80%',
+        alignItems: 'center',
+        marginBottom: 40
+    },
+    buttonText: {
+        color: '#fff',
+        fontSize: 22,
+        fontWeight: '700',
+        letterSpacing: 1,
     },
 });
