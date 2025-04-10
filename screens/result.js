@@ -1,11 +1,14 @@
 import React from 'react'
 import { StyleSheet, Text, View , Image, TouchableOpacity} from 'react-native';
 
-const Result = ({navigation}) => {
+
+const Result = ({route , navigation}) => {
+    const {score} = route.params
     return (
         <View style={styles.container}>
             <View>
-                <Text>Result</Text>
+                <Text style={styles.text}>You Scored</Text>
+                <Text style={styles.score}>{score}</Text>
             </View>
             <View style={styles.bannerContainer}>
                 <Image source={require('../assets/quiz.jpg')} style={styles.banner} resizeMode='contain' />
@@ -63,5 +66,16 @@ const styles = StyleSheet.create({
         fontWeight: '700',
         letterSpacing: 1,
     },
+    text : {
+        fontSize : 50 ,
+        fontWeight : 400
+    },
+    score : {
+        fontSize : 50 , 
+        fontWeight : 'bold' , 
+        alignItems : 'center' ,
+        justifyContent : 'center' ,
+        marginLeft : 100
+    }
 
 });
