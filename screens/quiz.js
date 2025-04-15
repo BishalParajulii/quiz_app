@@ -10,7 +10,7 @@ const Quiz = ({ navigation }) => {
     const [score , setScore] = useState(0);
 
     const getQuestions = async () => {
-        const url = 'https://opentdb.com/api.php?amount=20&category=19&difficulty=easy&type=multiple&encode=url3986';
+        const url = 'https://opentdb.com/api.php?amount=20&category=18&difficulty=easy&type=multiple&encode=url3986';
         const result = await fetch(url);
         const data = await result.json();
         setQuestions(data.results);
@@ -56,7 +56,7 @@ const Quiz = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            {questions && (
+            {questions && questions[ques] && (
                 <View style={styles.parent}>
                     <View style={styles.question}>
                         <Text style={styles.questions}> Q.{ques+1} {decodeURIComponent( questions[ques].question)}</Text>
